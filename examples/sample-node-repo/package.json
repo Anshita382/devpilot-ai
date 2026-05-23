@@ -1,0 +1,10 @@
+{
+  "name": "sample-node-repo",
+  "version": "0.1.0",
+  "description": "Sample Node.js service used as a DevPilot AI ingestion/agent target.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
