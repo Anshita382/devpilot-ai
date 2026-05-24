@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Sohne", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html,
+body {
+  background: #0a0a0c;
+  color: #ede8df;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  /* subtle film-grain atmosphere */
+  background-image: radial-gradient(
+      circle at 15% -10%,
+      rgba(255, 91, 58, 0.08),
+      transparent 45%
+    ),
+    radial-gradient(circle at 110% 10%, rgba(90, 209, 255, 0.06), transparent 40%);
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Thin hairline used throughout the editorial layout */
+.hairline {
+  border-color: rgba(237, 232, 223, 0.1);
+}
+
+::selection {
+  background: #ff5b3a;
+  color: #0a0a0c;
+}
+
+/* Custom scrollbar to match the dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0f13;
+}
+::-webkit-scrollbar-thumb {
+  background: #242837;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #323748;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pulse-dot {
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
