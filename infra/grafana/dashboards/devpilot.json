@@ -1,0 +1,68 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Agent Runs (by status)",
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 0 },
+      "targets": [
+        { "expr": "sum by (status) (devpilot_agent_runs_total)", "legendFormat": "{{status}}" }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Test Runs (pass/fail)",
+      "gridPos": { "h": 6, "w": 8, "x": 8, "y": 0 },
+      "targets": [
+        { "expr": "sum by (passed) (devpilot_test_runs_total)", "legendFormat": "passed={{passed}}" }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Repositories Ingested",
+      "gridPos": { "h": 6, "w": 8, "x": 16, "y": 0 },
+      "targets": [{ "expr": "devpilot_repo_ingests_total" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Agent Run Latency (p95, seconds)",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 6 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(devpilot_agent_run_latency_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p95"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Per-Agent Step Latency (p95)",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 6 },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(devpilot_agent_step_latency_seconds_bucket[5m])) by (le, agent))",
+          "legendFormat": "{{agent}}"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "MCP Tool Calls (rate by tool)",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 14 },
+      "targets": [
+        {
+          "expr": "sum by (tool) (rate(devpilot_tool_calls_total[5m]))",
+          "legendFormat": "{{tool}}"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["devpilot"],
+  "templating": { "list": [] },
+  "time": { "from": "now-1h", "to": "now" },
+  "title": "DevPilot AI",
+  "uid": "devpilot-main",
+  "version": 1
+}
